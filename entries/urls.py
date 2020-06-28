@@ -1,9 +1,12 @@
-from django.urls import path
+from django.urls import path, include
 
 from entries import views
-from .views import Test
+from rest_framework import routers
+from .views import PlanViewSet
+
+router = routers.DefaultRouter()
+router.register('plans', PlanViewSet)
 
 urlpatterns = [
-    path('demo/', views.first),
-    path('new/', Test.as_view()),
+    path('hello/', include(router.urls)),
 ]
